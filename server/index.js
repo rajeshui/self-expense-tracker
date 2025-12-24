@@ -89,6 +89,6 @@ app.get('/api/profile', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`RSD Spend Backend with SQLite running at http://localhost:${PORT}`);
+  console.log(`Expense Tracker Backend with SQLite running at http://localhost:${PORT}`);
   console.log(`Database located at: ${dbPath}`);
 });

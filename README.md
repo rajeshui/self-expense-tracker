@@ -1,5 +1,5 @@
 
-# RSD Spend Tracker (Supabase Edition)
+# Expense Tracker (Supabase Edition)
 
 A professional AI-driven expense tracker integrated with Supabase for cloud storage.
 

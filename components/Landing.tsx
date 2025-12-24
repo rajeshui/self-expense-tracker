@@ -71,7 +71,7 @@ const Landing: React.FC<LandingProps> = ({ onLogin }) => {
       <nav className="p-8 flex items-center justify-between z-10">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-indigo-600 rounded-2xl flex items-center justify-center text-white font-black text-xl shadow-lg shadow-indigo-500/20">R</div>
-          <span className="text-white text-2xl font-black tracking-tight">RSD Expense tracker</span>
+          <span className="text-white text-2xl font-black tracking-tight">Expense tracker</span>
         </div>
         <div className="hidden md:flex items-center gap-4 text-slate-400 text-sm font-bold">
           <span className="flex items-center gap-2">
@@ -108,7 +108,7 @@ const Landing: React.FC<LandingProps> = ({ onLogin }) => {
             
             <div className="mb-8">
               <h2 className="text-3xl font-black text-slate-900 mb-2">
-                {isLogin ? 'Sign In' : 'Join RSD Spend'}
+                {isLogin ? 'Sign In' : 'Join Expense Tracker'}
               </h2>
               <p className="text-slate-500 font-medium">Use your Supabase credentials</p>
             </div>

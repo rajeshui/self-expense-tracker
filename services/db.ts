@@ -3,7 +3,7 @@ import Dexie, { type Table } from 'dexie';
 import { Expense, UserProfile } from '../types';
 
 // Use a class-based approach for proper type inheritance and method availability in Dexie
-class RSDDatabase extends Dexie {
+class ExTrDatabase extends Dexie {
   expenses!: Table<Expense, string>;
   profile!: Table<UserProfile & { id: number }, number>;
 
@@ -19,6 +19,6 @@ class RSDDatabase extends Dexie {
 }
 
 // Instantiate the database
-const db = new RSDDatabase();
+const db = new ExTrDatabase();
 
 export { db };

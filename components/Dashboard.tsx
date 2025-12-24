@@ -103,7 +103,7 @@ const Dashboard: React.FC<DashboardProps> = ({ expenses, profile }) => {
                 </Pie>
                 <Tooltip 
                   contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }}
-                  formatter={(value: number) => [`${profile.currency}${value.toLocaleString()}`, 'Total']}
+                  formatter={(value: number, name: string) => [`${profile.currency}${value.toLocaleString()}`, name]}
                 />
               </PieChart>
             </ResponsiveContainer>

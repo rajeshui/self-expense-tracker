@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, act } from 'react';
 import { Expense, UserProfile, User } from './types';
 import { apiService } from './services/apiService';
 import { supabase } from './services/supabaseClient';
@@ -229,7 +229,7 @@ const App: React.FC = () => {
                     onClick={() => { setEditingExpense(null); setActiveTab('add'); }}
                     className="bg-indigo-600 text-white px-6 py-2.5 rounded-2xl text-sm font-bold shadow-lg shadow-indigo-100 flex items-center gap-2 hover:bg-indigo-700 hover:scale-105 transition-all"
                   >
-                    <span>+ New Record</span>
+                    <span>+ New Expense</span>
                   </button>
                 </div>
                 <ExpenseList 
