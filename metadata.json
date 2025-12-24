@@ -1,0 +1,7 @@
+{
+  "name": "RSD Spend tracker",
+  "description": "A premium personal finance tracker with AI-powered spending insights and automated categorization using Gemini.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
