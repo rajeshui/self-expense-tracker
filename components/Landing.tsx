@@ -33,25 +33,28 @@ const Landing: React.FC<LandingProps> = ({ onLogin }) => {
             id: data.user.id,
             name: data.user.user_metadata?.full_name || data.user.email?.split('@')[0] || 'User',
             email: data.user.email || '',
-            avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=man`
+            avatar: `https://ui-avatars.com/api/${data.user.user_metadata?.full_name || data.user.email}`
           });
         }
       } else {
-        const { data, error: authError } = await supabase.auth.signUp({
-          email,
-          password,
-          options: {
-            data: {
-              full_name: name,
-            }
-          }
-        });
+        // const { data, error: authError } = await supabase.auth.signUp({
+        //   email,
+        //   password,
+        //   options: {
+        //     data: {
+        //       full_name: name,
+        //     }
+        //   }
+        // });
 
-        if (authError) throw authError;
-        if (data.user) {
-          alert("Account created! Please check your email for verification (if enabled) or sign in now.");
-          setIsLogin(true);
-        }
+        // if (authError) throw authError;
+        // if (data.user) {
+        //   alert("Account created! Please check your email for verification (if enabled) or sign in now.");
+        //   setIsLogin(true);
+        // }
+
+        alert("Cannot sign up now! Please check with the administrator.");
+
       }
     } catch (err: any) {
       setError(err.message || "Authentication failed");
@@ -84,7 +87,7 @@ const Landing: React.FC<LandingProps> = ({ onLogin }) => {
       <main className="flex-1 flex flex-col md:flex-row items-center justify-center px-6 gap-12 md:gap-24 z-10">
         <div className="max-w-xl text-center md:text-left">
           <h1 className="text-5xl md:text-7xl font-black text-white leading-tight mb-6">
-            Intelligent Wealth <br />
+            Personal Wealth <br />
             <span className="text-indigo-500">Starts Here.</span>
           </h1>
           <p className="text-slate-400 text-lg md:text-xl font-medium leading-relaxed mb-8">

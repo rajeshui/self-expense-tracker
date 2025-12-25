@@ -13,7 +13,7 @@ const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, onLogout, user
   const tabs = [
     { id: 'dashboard', label: 'Home', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6' },
     { id: 'expenses', label: 'History', icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01' },
-    // { id: 'insights', label: 'Advisor', icon: 'M13 10V3L4 14h7v7l9-11h-7z' },
+    { id: 'insights', label: 'Advisor', icon: 'M13 10V3L4 14h7v7l9-11h-7z' },
   ];
 
   return (
@@ -24,7 +24,7 @@ const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, onLogout, user
           <div className="w-10 h-10 bg-indigo-600 rounded-2xl flex items-center justify-center text-white font-black text-xl shadow-lg shadow-indigo-100 group-hover:rotate-6 transition-transform">R</div>
           <div className="flex flex-col">
             <span className="text-xl font-black text-slate-900 leading-tight tracking-tight">Expense Tracker</span>
-            <span className="text-[10px] font-bold text-indigo-500 uppercase tracking-widest">Family Expenses</span>
+            <span className="text-[10px] font-bold text-indigo-500 uppercase tracking-widest">Know Where Every Penny Goes!</span>
           </div>
         </div>
         

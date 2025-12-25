@@ -19,8 +19,9 @@ const AIInsights: React.FC<AIInsightsProps> = ({ expenses, profile }) => {
     setError(null);
 
     try {
+      const geminiApiKey = import.meta.env.VITE_GEMINI_API_KEY as string | undefined;
       // Initialize the AI client with the system-provided API key
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+      const ai = new GoogleGenAI({ apiKey: geminiApiKey });
       const prompt = `Analyze my spending for the last month. Expenses: ${JSON.stringify(expenses)}. Budget: ${profile.monthlyBudget}. Provide a summary, 3 actionable suggestions, risk level, and top 3 categories by percentage.`;
 
       const response = await ai.models.generateContent({
@@ -66,12 +67,12 @@ const AIInsights: React.FC<AIInsightsProps> = ({ expenses, profile }) => {
     }
   };
 
-  useEffect(() => {
-    if (expenses.length > 3) {
-      generateInsights();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   if (expenses.length > 3) {
+  //     generateInsights();
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   return (
     <div className="space-y-6">

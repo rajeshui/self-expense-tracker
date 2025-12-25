@@ -31,7 +31,7 @@ const App: React.FC = () => {
           id: session.user.id,
           name: session.user.user_metadata?.full_name || session.user.email?.split('@')[0] || 'User',
           email: session.user.email || '',
-          avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${session.user.email}`
+          avatar: `https://ui-avatars.com/api/${session.user.user_metadata?.full_name || session.user.email}`
         });
       }
       setIsLoading(false);
@@ -46,7 +46,7 @@ const App: React.FC = () => {
           id: session.user.id,
           name: session.user.user_metadata?.full_name || session.user.email?.split('@')[0] || 'User',
           email: session.user.email || '',
-          avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${session.user.email}`
+          avatar: `https://ui-avatars.com/api/${session.user.user_metadata?.full_name || session.user.email}`
         });
       } else {
         setUser(null);
