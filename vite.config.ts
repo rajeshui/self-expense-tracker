@@ -57,6 +57,7 @@ const manifestForPlugIn: Partial<VitePWAOptions> = {
     ]
   },
   workbox: {
+    navigateFallback: '/self-expense-tracker/index.html',
     globPatterns: ['**/*.{js,css,html,ico,png,svg,woff,woff2}']
   }
 };

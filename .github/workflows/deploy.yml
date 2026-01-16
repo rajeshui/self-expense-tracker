@@ -1,0 +1,41 @@
+name: Remote Deployment
+
+on:
+  push:
+    branches: [ main ]  # Triggers when you push to main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4  # Downloads your code
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Configure Git
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git config --global url."https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com"
+
+      - name: Install dependencies
+        run: npm install  # Or npm ci for faster builds
+      
+      - name: Build Project
+        # This ensures the 'base' path logic in vite.config.js triggers correctly
+        run: npm run build
+        env:
+          NODE_ENV: production
+          VITE_GEMINI_API_KEY: ${{ secrets.VITE_GEMINI_API_KEY }}
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+
+      - name: Execute Deploy Script
+        run: npm run deploy
+        env:
+          # If your script needs secrets (like API keys), add them here
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
