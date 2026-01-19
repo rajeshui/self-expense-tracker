@@ -1,6 +1,7 @@
 
-import React from 'react';
-import { Expense } from '../types';
+import React, { useState } from 'react';
+import { Category, Expense } from '../types';
+import { CATEGORIES } from '../constants';
 
 interface ExpenseListProps {
   expenses: Expense[];
@@ -9,7 +10,29 @@ interface ExpenseListProps {
 }
 
 const ExpenseList: React.FC<ExpenseListProps> = ({ expenses, onDelete, onEdit }) => {
-  if (expenses.length === 0) {
+  const [expensesState, setExpenses] = useState<Expense[]>(expenses.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()));
+  const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
+
+  const filteredExpenses = selectedCategory
+    ? expensesState.filter(expense => expense.category === selectedCategory)
+    : expensesState;
+
+  const handleSortChange = (eventValue: string) => {
+    if (eventValue === 'date') {
+      const sortedExpenses = [...filteredExpenses].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+      setExpenses(sortedExpenses);
+      return;
+    } else if (eventValue === 'amount') {
+      const sortedExpenses = [...filteredExpenses].sort((a, b) => a.amount - b.amount);
+      setExpenses(sortedExpenses);
+      return;
+    }
+  }
+  const handleCategoryFilterChange = (category: string | null) => {
+    setSelectedCategory(category as Category | null); // Convert string to Category type
+  };
+  
+  if (expensesState.length === 0) {
     return (
       <div className="p-12 text-center">
         <div className="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -25,6 +48,22 @@ const ExpenseList: React.FC<ExpenseListProps> = ({ expenses, onDelete, onEdit })
 
   return (
     <div className="overflow-x-auto">
+      <div className="flex items-center justify-between mb-4 ml-8 float-left">
+        <p className="text-slate-500 font-medium text-sm">Sort by:</p>
+        <select name="sort" className="m-4 p-2 border border-slate-200 rounded-lg" onChange={(e) => handleSortChange(e.target.value)}>
+          <option value="date">Date</option>
+          <option value="amount">Amount</option>
+        </select>
+      </div>
+      <div className="flex items-center justify-between mb-4 float-right">
+        <p className="text-slate-500 font-medium text-sm">Filter by category:</p>
+        <select name="category" value={selectedCategory ? selectedCategory : ""} onChange={(e) => handleCategoryFilterChange(e.target.value as Category)} className="m-4 p-2 border border-slate-200 rounded-lg">
+          <option value="">All</option>
+          {CATEGORIES.map((category: Category) => (
+            <option key={category} value={category}>{category}</option>
+          ))}
+        </select>
+      </div>
       <table className="w-full text-left">
         <thead className="bg-slate-50/50 border-b border-slate-100">
           <tr>
@@ -36,7 +75,7 @@ const ExpenseList: React.FC<ExpenseListProps> = ({ expenses, onDelete, onEdit })
           </tr>
         </thead>
         <tbody className="divide-y divide-slate-100">
-          {expenses.slice().reverse().map((expense) => (
+          {filteredExpenses.slice().reverse().map((expense) => (
             <tr key={expense.id} className="group hover:bg-slate-50/50 transition-colors">
               <td className="px-6 py-4">
                 <p className="text-sm font-semibold text-slate-900">{expense.description}</p>

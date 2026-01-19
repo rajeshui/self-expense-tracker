@@ -1,15 +1,12 @@
 
 import React, { useState, useEffect } from 'react';
 import { Category, Expense } from '../types';
+import { CATEGORIES } from '../constants';
 
 interface ExpenseFormProps {
   onAdd: (expense: Omit<Expense, 'id'>) => Promise<void> | void;
   initialData?: Expense;
 }
-
-const CATEGORIES: Category[] = [
-  'Groceries', 'Utilities', 'Shopping', 'Food', 'Travel', 'Entertainment', 'Healthcare', 'Education', 'Income', 'Other'
-];
 
 const ExpenseForm: React.FC<ExpenseFormProps> = ({ onAdd, initialData }) => {
   const [amount, setAmount] = useState('');
